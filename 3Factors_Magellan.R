@@ -4,22 +4,28 @@
 
 # data source: "ffdata.csv", Fidelity Magellan Fund from 2006 Jan. to 2010 Dec.
 # data columns: 
-#            Date, 
-#            Mkt-RF(market excess returns, market factor),
-#            SMB(small minus big, size factor), 
-#            HML(high minus low, value factor), 
-#            RF(risk free rate), 
-#            FMAGX(return of Magellan)
+#            Date: in the format of ‘yyyymm’
+#            Mkt-RF: market excess returns, market factor
+#            SMB: small minus big, size factor
+#            HML: high minus low, value factor
+#            RF: risk free rate
+#            FMAGX: return of Magellan
 
 # Step 1: Load data to R from CSV
 ff_data <- read.table("ffdata.csv",header=TRUE,sep=",")
 
 # Step 2: Extract Fama-French Factors and Fund Returns from CSV columns
-rmrf <- ff_data[,2] # 2nd column is the market excess return data, divide by 100 to remove %
-smb <- ff_data[,3] # 3rd column is the size factor data
-hml <- ff_data[,4] # 4th column is the value factor data
-rf <- ff_data[,5] # 5th column is the risk free rate data
-fund <- ff_data[,6] # 6th column is the monthly return of the Magellan fund
+
+# 2nd column is the market excess return data, divide by 100 to remove %
+rmrf <- ff_data[,2] 
+# 3rd column is the size factor data
+smb <- ff_data[,3] 
+# 4th column is the value factor data
+hml <- ff_data[,4] 
+# 5th column is the risk free rate data
+rf <- ff_data[,5] 
+# 6th column is the monthly return of the Magellan fund
+fund <- ff_data[,6] 
 
 # Step 3: Calculate Excess Returns for the Magellan fund
 fund.xcess <- fund - rf # use the monthly return minus the risk free rate
